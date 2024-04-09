@@ -1,0 +1,5 @@
+command:
+steghide --extract -sf  pepo_evil.jpg -p HIDING 
+
+flag:
+Hello, the flag is CMPN{Spring2024}

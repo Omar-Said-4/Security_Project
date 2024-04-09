@@ -1,0 +1,4 @@
+used command:
+grep -i -E  -o '(\S*ctf\S*|\S*flag\S*|\S*key\S*|\S*string\S*|\S*secret\S*|\S*token\S*)' logs
+flag:
+picoCTF{grep_is_good_to_find_things_dba08a45}
