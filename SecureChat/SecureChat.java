@@ -58,8 +58,10 @@ public class SecureChat {
     // Select LSB such that 0 < m < q-1
     public static BigInteger selectLSBs(BigInteger m, BigInteger q) {
         BigInteger selected = BigInteger.ZERO;
+        BigInteger previous = BigInteger.ZERO;
         int currentBit = 0;
-        while (selected.compareTo(BigInteger.ZERO) > 0 && selected.compareTo(q.subtract(BigInteger.ONE)) < 0) {
+        while (selected.compareTo(q.subtract(BigInteger.ONE)) < 0) {
+            previous = selected;
             if(m.testBit(currentBit))
                 selected = selected.setBit(currentBit);
             else
@@ -68,7 +70,7 @@ public class SecureChat {
             currentBit++;
         }
 
-        return selected;
+        return previous;
     }
 
     // Perform ElGamal signtaure
