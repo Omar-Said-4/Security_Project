@@ -30,7 +30,7 @@ public class SecureChat {
         BigInteger privateKey;
         do {
             privateKey = new BigInteger(q.bitLength() - 1, random);
-        } while (privateKey.compareTo(BigInteger.ONE) <= 0 || privateKey.compareTo(q.subtract(BigInteger.TWO)) >= 0);
+        } while (privateKey.compareTo(BigInteger.ONE) <= 0 || privateKey.compareTo(q.subtract(BigInteger.ONE)) >= 0);
         return privateKey;
     }
 
@@ -69,6 +69,7 @@ public class SecureChat {
             m = m.shiftRight(1);
             currentBit++;
         }
+        System.out.println("previous= "+previous);
 
         return previous;
     }
@@ -96,7 +97,7 @@ public class SecureChat {
         m = selectLSBs(m, q); // Pick N LSB such that 0 < m < q-1
         BigInteger V1 = alpha.modPow(m, q); // V1 = alpha^m mod q
         BigInteger V2 = Ya.modPow(S1, q).multiply(S1.modPow(S2, q)).mod(q); // V2 = (Ya^S1 * S1^S2) mod q
-
+        System.out.println("v1= "+V1+" , v2= "+V2);
         return V1.equals(V2); // Signature is valid if V1 equals V2
     }
 
@@ -180,7 +181,7 @@ public class SecureChat {
                 BigInteger S1_received_Elgamal = new BigInteger(input.readLine().trim());
                 BigInteger S2_received_Elgamal = new BigInteger(input.readLine().trim());
 
-                boolean isValidSignature = verifySignature(q, alpha, Y_received_Elgamal, Y_Elgamal, S1_received_Elgamal, S2_received_Elgamal);
+                boolean isValidSignature = verifySignature(q, alpha, Y_received_Elgamal, Y_received_DH, S1_received_Elgamal, S2_received_Elgamal);
                 if (!isValidSignature) {
                     throw new Exception("Digital Signature is Invalid!");
                 }
@@ -205,7 +206,7 @@ public class SecureChat {
                 BigInteger S1_received_Elgamal = new BigInteger(input.readLine().trim());
                 BigInteger S2_received_Elgamal = new BigInteger(input.readLine().trim());
 
-                boolean isValidSignature = verifySignature(q, alpha, Y_received_Elgamal, Y_Elgamal, S1_received_Elgamal, S2_received_Elgamal);
+                boolean isValidSignature = verifySignature(q, alpha, Y_received_Elgamal, Y_received_DH, S1_received_Elgamal, S2_received_Elgamal);
                 if (!isValidSignature) {
                     throw new Exception("Digital Signature is Invalid!");
                 }
