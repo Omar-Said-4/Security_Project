@@ -58,18 +58,17 @@ public class SecureChat {
     // Select LSB such that 0 < m < q-1
     public static BigInteger selectLSBs(BigInteger m, BigInteger q) {
         BigInteger selected = BigInteger.ZERO;
-        while (m.compareTo(BigInteger.ZERO) > 0 && m.compareTo(q.subtract(BigInteger.ONE)) < 0) {
-            BigInteger lsb = m.and(BigInteger.ONE);
-            selected = selected.shiftLeft(1).or(lsb);
+        int currentBit = 0;
+        while (selected.compareTo(BigInteger.ZERO) > 0 && selected.compareTo(q.subtract(BigInteger.ONE)) < 0) {
+            if(m.testBit(currentBit))
+                selected = selected.setBit(currentBit);
+            else
+                selected = selected.clearBit(currentBit);
             m = m.shiftRight(1);
+            currentBit++;
         }
 
         return selected;
-  }
-
-    // Calculate the multiplicative inverse modulo (q-1)
-    private static BigInteger modInverse(BigInteger a, BigInteger m) {
-        return a.modInverse(m);
     }
 
     // Perform ElGamal signtaure
@@ -125,7 +124,6 @@ public class SecureChat {
         byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedData));
         return new String(decryptedBytes);
     }
-
 
     public static void main(String[] args) {
         if (args.length < 1) {
