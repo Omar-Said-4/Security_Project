@@ -69,7 +69,7 @@ public class SecureChat {
             m = m.shiftRight(1);
             currentBit++;
         }
-        System.out.println("previous= "+previous);
+        //System.out.println("previous= "+previous);
 
         return previous;
     }
@@ -97,7 +97,7 @@ public class SecureChat {
         m = selectLSBs(m, q); // Pick N LSB such that 0 < m < q-1
         BigInteger V1 = alpha.modPow(m, q); // V1 = alpha^m mod q
         BigInteger V2 = Ya.modPow(S1, q).multiply(S1.modPow(S2, q)).mod(q); // V2 = (Ya^S1 * S1^S2) mod q
-        System.out.println("v1= "+V1+" , v2= "+V2);
+        //System.out.println("v1= "+V1+" , v2= "+V2);
         return V1.equals(V2); // Signature is valid if V1 equals V2
     }
 
@@ -218,7 +218,7 @@ public class SecureChat {
                 output.println(elGamalS[1].toString().toString());
 
                 BigInteger keyInt = Y_received_DH.modPow(X_DH, q);
-                System.out.println("Key is " + keyInt);
+                //System.out.println("Key is " + keyInt);
                 AESKey = deriveAESKey(keyInt);
             } 
             else {
