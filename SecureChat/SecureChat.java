@@ -60,15 +60,16 @@ public class SecureChat {
         BigInteger selected = BigInteger.ZERO;
         BigInteger previous = BigInteger.ZERO;
         int currentBit = 0;
+        System.out.println("m= "+m.toString(2));
         while (selected.compareTo(q.subtract(BigInteger.ONE)) < 0) {
             previous = selected;
             if(m.testBit(currentBit))
                 selected = selected.setBit(currentBit);
             else
                 selected = selected.clearBit(currentBit);
-            m = m.shiftRight(1);
             currentBit++;
         }
+        System.out.println("previous= "+ previous.toString(2));
         //System.out.println("previous= "+previous);
 
         return previous;
