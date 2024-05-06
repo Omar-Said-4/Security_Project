@@ -2,7 +2,7 @@
 
 The `RunSecureChat.sh` and `RunSecureChat.bat` scripts compile and run the SecureChat.java program for two users: Alice and Bob.
 
-## Usage
+## Usage (Script Steps)
 
 1. Compile SecureChat.java:
 
