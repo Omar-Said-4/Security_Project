@@ -22,7 +22,7 @@ public class SecureChat {
     private static BigInteger q; // DH and ElGamal prime modulus
     private static BigInteger alpha; // DH and ElGamal generator
 
-    private static final int PORT = 7777; // Port number for the socket connection
+    private static int PORT = 7777; // Port number for the socket connection
 
     // Generate a private key within the range [1, q-2]
     private static BigInteger generatePrivateKey(BigInteger q) {
@@ -137,6 +137,7 @@ public class SecureChat {
         }
 
         String role = args[0].toLowerCase();
+        PORT = Integer.parseInt(args[1]);
         try {
             // Read q and alpha from params.txt
             readParamsFromFile("params.txt");
