@@ -13,7 +13,7 @@ This project is a fulfillment of the Cryptography and Network Security course, d
 ## Technologies and Tools Used   <a name = "tech"></a>
 
 - **Programming Languages:** Python, Java
-- **Packages:** : javax, BigInteger
+- **Packages:** : javax, BigInteger, Socket
 - **Tools:** Wireshark, Steghide.
 
 ## Project Structure  <a name = "project-structure"></a>
